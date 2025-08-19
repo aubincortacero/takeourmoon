@@ -1,0 +1,36 @@
+/* FONT FAMILY */
+@font-face {
+  font-family: "Thunder";
+  src: url("@/assets/fonts/thunder/Thunder-LC.woff2") format("woff2"), url("@/assets/fonts/thunder/Thunder-LC.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: "ThunderMed";
+  src: url("@/assets/fonts/thunder/Thunder-MediumLC.woff2") format("woff2"), url("@/assets/fonts/thunder/Thunder-MediumLC.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: "ThunderMedIta";
+  src: url("@/assets/fonts/thunder/Thunder-MediumLCItalic.woff2") format("woff2"), url("@/assets/fonts/thunder/Thunder-MediumLCItalic.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: "Thunder";
+  src: url("@/assets/fonts/thunder/Thunder-BoldLC.woff2") format("woff2"), url("@/assets/fonts/thunder/Thunder-BoldLC.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: "ThunderIta";
+  src: url("@/assets/fonts/thunder/Thunder-BoldLCItalic.woff2") format("woff2"), url("@/assets/fonts/thunder/Thunder-BoldLCItalic.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: italic;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+}/*# sourceMappingURL=fonts.css.map */
