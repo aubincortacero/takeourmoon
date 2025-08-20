@@ -301,7 +301,7 @@ p{
 
 
 .ecran{
-    background-image: url(./images/ecran.webp);
+    background-image: url(../images/ecran.webp);
     background-size: cover;
     position: fixed;
     width: 100vw;
@@ -372,10 +372,23 @@ header{
     height: 4vh;
     width: 100vw;  
     position: fixed; 
-    top: 0; 
+    top: 0;  
     z-index: 999;
-    display: none; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 } 
+
+header .menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Thunder;
+    font-size: 30px;
+    padding: 10px 20px;
+    background-color: #FF4053;
+    transform: translateY(15px) skewX(-15deg);
+}
 
 header .container{
     width: 100%;
@@ -421,7 +434,7 @@ footer{
     padding-top: 5vh;
     padding-bottom: 5vh; 
     margin-top: -2px;
-    background-image: url(./images/fuseefooter.webp);
+    background-image: url(../images/fuseefooter.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -953,7 +966,7 @@ footer .containermentions{
     display: flex;
     padding: 0 6.66vw;  
     margin-top: 1vh;
-
+    flex-wrap: nowrap;
 }
 
 #section-artemis .containerbot article{
