@@ -66,7 +66,7 @@ const articles = computed(() =>
                 <div class="informations-tab" v-for="(tab, index) in tabs" :key="index">      
                                     <div class="uneligne">
                                         <div class="col-left">
-                                          <img loading="lazy" :src="tab.icone" :alt="tab.titre_de_linformation" />
+                                          <img  :src="tab.icone" :alt="tab.titre_de_linformation" />
                                         </div>
                                         <div class="col-right">
                                             <p class="fc-white font-35 font-thunderbold" v-html="tab.titre_de_linformation"></p>
@@ -76,7 +76,7 @@ const articles = computed(() =>
                 </div>
             </div> 
             <div class="col-right">
-                <img loading="lazy" :src="moonPoster" alt="La lune" />
+                <img  :src="moonPoster" alt="La lune" />
             </div>     
         </div> 
         <div class="containerbot" id="sectionartemisarticles">
@@ -95,7 +95,7 @@ const articles = computed(() =>
           <div class="line" v-for="i in 80" :key="i"></div>
         </div>
         <div class="container">
-            <img loading="lazy" src="../assets/images/soustraction-1.webp" alt="cratère lunaire" />
+            <img  src="../assets/images/soustraction-1.webp" alt="cratère lunaire" />
         </div>  
     </section>
 </template>

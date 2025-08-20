@@ -30,18 +30,20 @@ onMounted( async () => {
     const isMobile = windowWidth.value < 780
 
       if(!isMobile){   
+
         //Animation, don't forget scroller : "Main -   #scroll-page-container    - locomotive smooth scroll"
         const tlheader = gsap.timeline({
                 scrollTrigger: {
                 trigger: "#section-header", 
 
                 start: "center center",
-                end: "bottom top", 
+                end: "bottom -20%", 
                 scrub: true
             }
         });  
-        tlheader.to("#section-header h1", {xPercent: 3, duration: 1});
-
+        tlheader.to("#section-header h1", {xPercent: 3, duration: 1}),
+        tlheader.to("#section-header .container .col-left", {yPercent: -15, duration: 1}, "-=1");
+ 
         const tlmission = gsap.timeline({
                 scrollTrigger: {
                 trigger: "#section-mission", 

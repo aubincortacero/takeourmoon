@@ -64,7 +64,7 @@ const regolithes = computed(() =>
                 </article>
             </div> 
             <div class="col mid"> 
-                <img loading="lazy" :src="acf?.photo_regolithe" alt="régolithe lunaire" />
+                <img  :src="acf?.photo_regolithe" alt="régolithe lunaire" />
             </div> 
             <div class="col">
                 <article class="col-top">

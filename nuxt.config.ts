@@ -12,7 +12,7 @@ if (typeof globalThis.crypto.createHash !== 'function') {
 }
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: [
     './assets/css/main.css', 
     './assets/css/fonts.css'
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       wpApi: process.env.NUXT_PUBLIC_WP_API
     }
   },
-  modules: ['@nuxt/image'],
+  modules: ['@nuxt/image', 'lenis/nuxt'],
   image: {
     domains: ['takeourmoon.com'],
     format: ['webp', 'avif'],
