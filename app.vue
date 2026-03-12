@@ -17,6 +17,16 @@ import { watch } from 'vue'
 const windowWidth = ref(0)
 const updateWidth = () => (windowWidth.value = window.innerWidth)
 
+const lenisOptions = {
+  autoRaf: false,
+  anchors: {
+    offset: 100,
+    onComplete: () => {
+      console.log('scrolled to anchor')
+    }
+  }
+}
+
 
 useHead({
   title: 'Takeourmoon - Démo Nuxt',
@@ -35,15 +45,6 @@ onMounted(async () => {
   await nextTick()
  
   gsap.registerPlugin(ScrollTrigger)
-  const lenisOptions = {
-    autoRaf: false,
-    anchors: {
-      offset: 100,
-      onComplete: ()=>{
-        console.log('scrolled to anchor')
-      }
-    } 
-  } 
 
   const lenis = useLenis((lenis) => {
     // called every scroll

@@ -95,7 +95,7 @@ const articles = computed(() =>
           <div class="line" v-for="i in 80" :key="i"></div>
         </div>
         <div class="container">
-            <img  src="../assets/images/soustraction-1.webp" alt="cratère lunaire" />
+            <img  src="~/assets/images/soustraction-1.webp" alt="cratère lunaire" />
         </div>  
     </section>
 </template>
