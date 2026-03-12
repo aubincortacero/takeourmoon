@@ -1,6 +1,7 @@
 <script setup>
 const config = useRuntimeConfig()
 import moonPoster from '../assets/images/moonposterfull.webp'
+import soustractionImage from '../assets/images/Soustraction.webp'
 
  // ✅ Fetch REST API WordPress (page ID 7)
 const acf = ref(null)
@@ -95,7 +96,7 @@ const articles = computed(() =>
           <div class="line" v-for="i in 80" :key="i"></div>
         </div>
         <div class="container">
-            <img  src="../assets/images/soustraction.webp" alt="cratère lunaire" />
+            <img  :src="soustractionImage" alt="cratère lunaire" />
         </div>  
     </section>
 </template>
