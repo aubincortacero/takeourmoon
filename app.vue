@@ -1,11 +1,11 @@
 <!-- app.vue (ou pages/missions.vue si ton routing est OK) -->
 <script setup>
-import SectionHeader from '../components/SectionHeader.vue'
-import Header from '../components/Header.vue'
-import Footer from '../components/Footer.vue'
-import SectionMissions from './components/SectionMissions.vue'
-import SectionMoon from './components/SectionMoon.vue'
-import SectionRegolithe from './components/SectionRegolithe.vue'
+import SectionHeader from '~/components/SectionHeader'
+import Header from '~/components/Header'
+import Footer from '~/components/Footer'
+import SectionMissions from '~/components/SectionMissions'
+import SectionMoon from '~/components/SectionMoon'
+import SectionRegolithe from '~/components/SectionRegolithe'
 import Lenis from '@studio-freight/lenis'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
