@@ -6,12 +6,6 @@ export default defineNuxtConfig({
     './assets/css/main.css', 
     './assets/css/fonts.css'
   ],
-  runtimeConfig: {
-    public: {
-      // surchargé par NUXT_PUBLIC_WP_API (voir .env.example)
-      wpApi: ''
-    }
-  },
   modules: ['@nuxt/image', 'lenis/nuxt'],
   image: {
     domains: ['takeourmoon.com'],

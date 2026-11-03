@@ -1,5 +1,5 @@
 <script setup>
-const acf = await useWpPage()
+const acf = usePageContent()
 
 const regolithes = computed(() =>
   Array.isArray(acf.value?.informations_regolithe) ? acf.value.informations_regolithe : []

@@ -2,7 +2,7 @@
 import moonPoster from '~/assets/images/moonposterfull.webp'
 import soustractionImage from '~/assets/images/Soustraction.webp'
 
-const acf = await useWpPage()
+const acf = usePageContent()
 
 const tabs = computed(() =>
   Array.isArray(acf.value?.tableau_des_informations) ? acf.value.tableau_des_informations : []

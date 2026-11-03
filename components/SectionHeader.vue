@@ -1,7 +1,7 @@
 <script setup>
 import Model3D from '~/components/Model3d.vue'
 
-const acf = await useWpPage()
+const acf = usePageContent()
 
 </script>
 

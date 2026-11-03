@@ -3,7 +3,7 @@ import { onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const acf = await useWpPage()
+const acf = usePageContent()
 
 onMounted( async () => {
 
