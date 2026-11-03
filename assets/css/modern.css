@@ -1,0 +1,406 @@
+/*
+  Couche d'interactions et de finitions, chargée après main.css.
+  Reprend la charte existante : rouge #FF4053, noir, gris #E4E4E4, Thunder, biais à -20deg.
+*/
+:root {
+  --red: #FF4053;
+  --black: #000000;
+  --grey: #E4E4E4;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px dashed currentColor;
+  outline-offset: 4px;
+}
+
+/* Masques de SplitText : un peu d'air au-dessus pour les accents des capitales */
+.splitline-mask {
+  padding-top: 0.3em;
+  margin-top: -0.3em;
+  /* le masque ne coupe que verticalement : un mot trop large peut déborder comme avant */
+  overflow-x: visible !important;
+  overflow-y: clip !important;
+}
+
+/* Un mot découpé en lettres ne doit jamais passer à la ligne */
+.splitword {
+  white-space: nowrap;
+}
+
+/* LUNE ROUGE
+   La teinte est un filtre SVG appliqué à la Lune 3D (Model3d.vue) et elle est pré-calculée
+   dans l'image de la section Artemis : les anciens disques rouges en ::after ne servent plus. */
+#section-header .container .col-left::after,
+#section-artemis .container > .col-right::after {
+  content: none !important;
+}
+
+/* Teinte rouge + halo qui épouse la forme de la Lune et la suit dans ses mouvements */
+#section-header .container .col-left model-viewer {
+  filter: url(#moon-tint) drop-shadow(0 0 40px var(--red));
+}
+
+.moon-tint-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* LOADER */
+.loading__pct {
+  display: inline-block;
+  min-width: 2.2em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* BARRE DE PROGRESSION */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--red);
+  box-shadow: 0 1px 0 var(--black);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 99998;
+  pointer-events: none;
+}
+
+/* CURSEUR */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 10000000;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: opacity 0.3s;
+}
+
+.cursor.is-hidden {
+  opacity: 0;
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.cursor__dot {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.cursor__ring-shape {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s var(--ease-out), height 0.5s var(--ease-out), margin 0.5s var(--ease-out),
+    background-color 0.3s, transform 0.3s var(--ease-out);
+}
+
+.cursor.is-hover .cursor__ring-shape {
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  background-color: #fff;
+}
+
+.cursor.is-hover .cursor__dot {
+  transform: scale(0);
+}
+
+.cursor.has-label .cursor__ring-shape {
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+}
+
+.cursor__label {
+  font-family: 'ThunderMedIta';
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  transform: skewX(-20deg);
+  transition: opacity 0.3s;
+}
+
+.cursor.has-label .cursor__label {
+  opacity: 1;
+}
+
+.cursor.is-down .cursor__ring-shape {
+  transform: scale(0.8);
+}
+
+/* BANDEAU DÉFILANT */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.marquee__item {
+  flex-shrink: 0;
+  padding-right: 0.35em;
+}
+
+.marquee__sep {
+  display: inline-block;
+  padding-left: 0.35em;
+  font-size: 0.6em;
+  vertical-align: middle;
+}
+
+#section-mission .histories.marquee {
+  padding-right: 0;
+  margin-top: 2vh;
+  transform: none;
+}
+
+#section-mission .histories .marquee__item {
+  transform: skewX(-20deg);
+}
+
+.footer-marquee {
+  line-height: 1;
+  margin: -1vh 0 5vh;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--black);
+}
+
+/* MISSIONS : chiffres clés */
+.missions-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 4vh 4vw;
+  margin-top: 6vh;
+}
+
+.missions-stats {
+  display: flex;
+  gap: 4vw;
+}
+
+.missions-stat dt {
+  display: block;
+}
+
+.missions-stat dd {
+  font-family: 'Thunder';
+  font-weight: bold;
+  font-size: calc((14vh + 8vw) / 2);
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  min-width: 1.6ch;
+}
+
+/* MISSIONS : filtres */
+.missions-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.4vh;
+  max-width: 60%;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6vw;
+}
+
+.chip {
+  appearance: none;
+  border: 2px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  padding: 0.35em 1em;
+  transform: skewX(-20deg);
+  transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+
+.chip > span {
+  display: inline-block;
+  transform: skewX(20deg);
+}
+
+.chip sup {
+  font-size: 0.6em;
+  opacity: 0.7;
+}
+
+.chip:hover {
+  transform: skewX(-20deg) translateY(-3px);
+}
+
+.chip.is-active {
+  background-color: var(--black);
+  color: var(--red);
+}
+
+/* MISSIONS : tableau */
+#section-mission .container > .tableau-missions .uneligne-row {
+  position: relative;
+  isolation: isolate;
+  border-bottom: 0.2vw solid var(--black);
+}
+
+#section-mission .container > .tableau-missions .uneligne-row::before {
+  content: '';
+  position: absolute;
+  inset: 0 -1.5vw;
+  z-index: -1;
+  background-color: var(--black);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.45s var(--ease-out);
+}
+
+#section-mission .container > .tableau-missions .uneligne-row p {
+  transition: color 0.3s, transform 0.45s var(--ease-out);
+}
+
+#section-mission .container > .tableau-missions .uneligne-row:hover::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+#section-mission .container > .tableau-missions .uneligne-row:hover p {
+  color: var(--red);
+}
+
+#section-mission .container > .tableau-missions .uneligne-row:hover .unevaleur:first-child p {
+  transform: translateX(1vw);
+}
+
+/* Pastille de résultat : pleine pour un succès, vide pour un échec */
+#section-mission .container > .tableau-missions .uneligne-row .unevaleur:last-of-type p::before {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.6em;
+  vertical-align: 0.1em;
+  transform: skewX(-20deg);
+}
+
+#section-mission .container > .tableau-missions .uneligne-row.is-success .unevaleur:last-of-type p::before {
+  background-color: currentColor;
+}
+
+#section-mission .container > .tableau-missions .uneligne-row.is-failure .unevaleur:last-of-type p::before {
+  border: 2px solid currentColor;
+}
+
+.missions-empty {
+  padding: 4vh 0;
+}
+
+/* LUNE : lignes d'informations */
+#section-artemis .container .col-left .uneligne .col-right p[data-count] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* FOOTER */
+footer .container .col a {
+  position: relative;
+  width: fit-content;
+}
+
+footer .container .col a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.8vh;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out);
+}
+
+footer .container .col a.secondary::after {
+  left: 1vw;
+}
+
+footer .container .col a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+footer .back-to-top {
+  margin-left: auto;
+}
+
+@media screen and (max-width: 780px) {
+  .missions-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .missions-filters {
+    max-width: 100%;
+    align-items: flex-start;
+  }
+
+  .chips {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .missions-stats {
+    gap: 8vw;
+  }
+
+  .missions-stat dd {
+    font-size: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,95 +1,5 @@
 <script setup>
-import { onMounted, nextTick } from 'vue'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 const acf = usePageContent()
-
-onMounted( async () => {
-
-      await nextTick()
-
-    gsap.registerPlugin(ScrollTrigger) 
-
-    const isMobile = window.innerWidth < 780
-
-      if(!isMobile){   
-
-        const tlheader = gsap.timeline({
-                scrollTrigger: {
-                trigger: "#section-header", 
-
-                start: "center center",
-                end: "bottom -20%", 
-                scrub: true
-            }
-        });  
-        tlheader.to("#section-header h1", {xPercent: 3, duration: 1});
-        tlheader.to("#section-header .container .col-left", {yPercent: -15, duration: 1}, "-=1");
- 
-        const tlmission = gsap.timeline({
-                scrollTrigger: {
-                trigger: "#section-mission", 
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-        tlmission.from("#section-mission h2", {xPercent: 5, duration: 1});
-
-        const tltitreartmemis = gsap.timeline({
-                scrollTrigger: {
-                trigger: "section.titre.artemis", 
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });   
-        tltitreartmemis.to("section.titre.artemis h2", {xPercent: 3, duration: 1});
-
-        const tltitreressource = gsap.timeline({
-                scrollTrigger: {
-                trigger: "section.titre.ressource", 
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });  
-        tltitreressource.to("section.titre.ressource h2", {xPercent: 3, duration: 1});
-    
-        const tlartemis = gsap.timeline({
-                scrollTrigger: {
-                trigger: "#section-artemis", 
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        }); 
-        tlartemis.from("#section-artemis h2", {xPercent: 5, duration: 1});
-
-        const tlressource = gsap.timeline({
-                scrollTrigger: {
-                trigger: "#section-ressource", 
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        }); 
-        tlressource.from("#section-ressource h2", {xPercent: 5, duration: 1});
-
-
-        const bigimage = gsap.timeline({
-                scrollTrigger: {
-                trigger: "#section-image", 
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });    
-        bigimage.to("#section-image .container img", {scale: 1.21, duration: 1});
-    } 
-});
-
 </script>
 <template>
 
@@ -105,6 +15,7 @@ onMounted( async () => {
 </section>    
 
 <footer> 
+    <Marquee class="footer-marquee uppercase font-150 font-thunderbold" text="Take our moon" :repeat="4" :speed="0.6" reverse />
     <div class="container">
         <div class="col">
             <h2 class="bigtitle uppercase font-150 font-thunderbold fc-black" v-html="acf?.grand_titre"></h2>
@@ -122,7 +33,7 @@ onMounted( async () => {
             <!-- <a class="font-20 font-thunderbolditalic fc-black" href="/mentions-legales/">Mentions légales</a> -->
         </div> 
         <div class="col">
-
+            <a class="back-to-top font-20 font-thunderbolditalic fc-black" href="#section-header">Retour en orbite ↑</a>
         </div>
     </div> 
     <div class="containermentions font-15 font-thundermediumitalic fc-black">
