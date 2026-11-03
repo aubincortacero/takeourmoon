@@ -67,13 +67,11 @@ onMounted(async () => {
 <template>
   <section id="section-mission">
     <!-- Titre principal -->
-    <h2 class="bigtitle uppercase font-150 font-thunderbold fc-black" v-html="title">
-    </h2>
+    <h2 class="bigtitle uppercase font-150 font-thunderbold fc-black" v-html="title"></h2>
 
     <div class="container">
       <!-- Sous-titre -->
-      <h3 class="font-50 font-thundermediumitalic fc-black" v-html="subtitle">
-      </h3>
+      <h3 class="font-50 font-thundermediumitalic fc-black" v-html="subtitle"></h3>
 
       <!-- Tableau des missions -->
       <div class="tableau-missions">
