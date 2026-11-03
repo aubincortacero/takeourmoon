@@ -12,7 +12,7 @@ const acf = usePageContent()
 
     <div class="container">
       <!-- Colonne gauche : modèle 3D -->
-      <div class="col-left" data-cursor="Tourner">
+      <div class="col-left" data-cursor="Lancer">
         <Model3D />
       </div>
 

@@ -50,6 +50,37 @@
   filter: url(#moon-tint) drop-shadow(0 0 40px var(--red));
 }
 
+/* La Lune se lance au doigt : on garde le scroll vertical sur mobile */
+#section-header .container .col-left {
+  touch-action: pan-y;
+  user-select: none;
+}
+
+/* Ondes de choc au point d'impact */
+.moon-impact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.moon-impact span {
+  position: absolute;
+  width: 16vw;
+  height: 16vw;
+  margin: -8vw 0 0 -8vw;
+  border: 3px solid var(--red);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.moon-impact span:nth-child(2) {
+  border-color: #fff;
+  border-width: 1.5px;
+}
+
 .moon-tint-filter {
   position: absolute;
   width: 0;
@@ -284,31 +315,22 @@ html.has-cursor * {
   border-bottom: 0.2vw solid var(--black);
 }
 
+/* Fond noir de survol : ses bords haut et bas sont pilotés par GSAP (SectionMissions.vue) */
 #section-mission .container > .tableau-missions .uneligne-row::before {
   content: '';
   position: absolute;
   inset: 0 -1.5vw;
   z-index: -1;
   background-color: var(--black);
-  transform: scaleY(0);
-  transform-origin: bottom;
+  clip-path: inset(var(--fill-top, 100%) 0 var(--fill-bot, 0%) 0);
+  pointer-events: none;
+}
+
+#section-mission .container > .tableau-missions .uneligne-row .unevaleur:first-child p {
   transition: transform 0.45s var(--ease-out);
 }
 
-#section-mission .container > .tableau-missions .uneligne-row p {
-  transition: color 0.3s, transform 0.45s var(--ease-out);
-}
-
-#section-mission .container > .tableau-missions .uneligne-row:hover::before {
-  transform: scaleY(1);
-  transform-origin: top;
-}
-
-#section-mission .container > .tableau-missions .uneligne-row:hover p {
-  color: var(--red);
-}
-
-#section-mission .container > .tableau-missions .uneligne-row:hover .unevaleur:first-child p {
+#section-mission .container > .tableau-missions .uneligne-row.is-hovered .unevaleur:first-child p {
   transform: translateX(1vw);
 }
 
@@ -336,6 +358,13 @@ html.has-cursor * {
 }
 
 /* LUNE : lignes d'informations */
+#section-artemis .container .col-left .uneligne .col-left img {
+  width: clamp(44px, 4vw, 76px);
+  height: auto;
+  min-height: 0;
+  max-width: none;
+}
+
 #section-artemis .container .col-left .uneligne .col-right p[data-count] {
   font-variant-numeric: tabular-nums;
 }

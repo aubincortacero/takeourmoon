@@ -108,10 +108,10 @@ const content = {
   sous_titre_colonisation: 'Quelques bases sur notre satellite',
   // Icônes à déposer dans public/images/ (anciennement hébergées sur WordPress)
   tableau_des_informations: [
-    { icone: '/images/Groupe-55.png', titre_de_linformation: 'Nom', sous_titre_de_linformation: 'Lune' },
-    { icone: '/images/Groupe-54.png', titre_de_linformation: 'Diamètre', sous_titre_de_linformation: '3 474,8 km' },
-    { icone: '/images/Groupe-53.png', titre_de_linformation: 'Masse', sous_titre_de_linformation: '7,6x10²²kg' },
-    { icone: '/images/Groupe-52.png', titre_de_linformation: 'Distance de la terre', sous_titre_de_linformation: '384 400 km' }
+    { icone: '/images/lune-nom.svg', titre_de_linformation: 'Nom', sous_titre_de_linformation: 'Lune' },
+    { icone: '/images/lune-diametre.svg', titre_de_linformation: 'Diamètre', sous_titre_de_linformation: '3 474,8 km' },
+    { icone: '/images/lune-masse.svg', titre_de_linformation: 'Masse', sous_titre_de_linformation: '7,6x10²²kg' },
+    { icone: '/images/lune-distance.svg', titre_de_linformation: 'Distance de la terre', sous_titre_de_linformation: '384 400 km' }
   ],
 
   le_programme_artemis: 'Le programme<br>\n&nbsp;Artemis',

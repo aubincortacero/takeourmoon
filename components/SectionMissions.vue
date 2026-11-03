@@ -77,6 +77,50 @@ watch([result, country], async () => {
   ScrollTrigger.refresh()
 })
 
+// Survol des lignes : le fond noir entre par le bord où arrive la souris et ressort par celui où elle part.
+// GSAP repart toujours de l'état en cours, donc un survol rapide reste fluide, sans saut.
+const fills = new WeakMap()
+let hovered = null
+
+const setFill = (row, entering, e) => {
+  const box = row.getBoundingClientRect()
+  const fromTop = e.clientY < box.top + box.height / 2
+  let fill = fills.get(row)
+  if (!fill) fills.set(row, (fill = { top: 100, bot: 0 }))
+
+  // ligne vide : on replie le fond sur le bord d'entrée avant de le déplier
+  if (entering && fill.top + fill.bot >= 100) Object.assign(fill, fromTop ? { top: 0, bot: 100 } : { top: 100, bot: 0 })
+  row.classList.toggle('is-hovered', entering)
+
+  const duration = reduceMotion() ? 0 : 0.45
+  const target = entering ? { top: 0, bot: 0 } : fromTop ? { top: 0, bot: 100 } : { top: 100, bot: 0 }
+  gsap.to(fill, {
+    ...target,
+    duration,
+    ease: 'power3.out',
+    overwrite: true,
+    onUpdate: () => {
+      row.style.setProperty('--fill-top', `${fill.top}%`)
+      row.style.setProperty('--fill-bot', `${fill.bot}%`)
+    }
+  })
+  // le texte rougit au même rythme que le fond noir arrive, pour rester lisible
+  gsap.to(row.querySelectorAll('p'), { color: entering ? '#FF4053' : '#000000', duration, ease: 'power3.out', overwrite: true })
+}
+
+const onRowOver = (e) => {
+  const row = e.target.closest('.uneligne-row')
+  if (row === hovered) return
+  if (hovered) setFill(hovered, false, e)
+  if (row) setFill(row, true, e)
+  hovered = row
+}
+
+const onTableLeave = (e) => {
+  if (hovered) setFill(hovered, false, e)
+  hovered = null
+}
+
 onMounted(async () => {
   await nextTick()
   gsap.registerPlugin(ScrollTrigger)
@@ -151,7 +195,7 @@ onMounted(async () => {
       </div>
 
       <!-- Tableau des missions -->
-      <div ref="table" class="tableau-missions">
+      <div ref="table" class="tableau-missions" @mouseover="onRowOver" @mouseleave="onTableLeave">
         <div class="uneligne uneligne-head">
           <div class="unevaleur"><p class="font-20">Mission</p></div>
           <div class="unevaleur"><p class="font-20">État</p></div>

@@ -79,7 +79,8 @@ const revealHatches = () => {
 // Les valeurs [data-count] défilent jusqu'à leur nombre (ex. "384 400 km").
 const countUp = () => {
   document.querySelectorAll('[data-count]').forEach((el) => {
-    const match = el.textContent.match(/^([\d\s ]+(?:,\d+)?)(.*)$/s)
+    // le nombre (espaces de milliers compris), puis l'unité avec son espace : "384 400" + " km"
+    const match = el.textContent.match(/^(\d[\d\s  ]*?(?:,\d+)?)(\s*(?!,\d)[^\d\s].*)$/s)
     if (!match) return
     const target = parseFloat(match[1].replace(/[\s ]/g, '').replace(',', '.'))
     const decimals = (match[1].split(',')[1] || '').length
