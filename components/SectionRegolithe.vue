@@ -1,31 +1,19 @@
 <script setup>
-const config = useRuntimeConfig()
-
-// ✅ Fetch REST API WordPress (page ID 7)
-const acf = ref(null)
-try {
-  const { data: page } = await useFetch(`${config.public.wpApi}/acf/v3/pages/7`)
-  acf.value = page.value?.acf
-  console.log('OK - Regolithe');
-} catch (error) {
-  console.error('Erreur lors de la récupération des données WordPress :', error)
-}
+const acf = await useWpPage()
 
 const regolithes = computed(() =>
-  Array.isArray(acf.value?.informations_regolithe)
-    ? acf.value.informations_regolithe.slice(0) // enlève la première ligne "Mission / État / Année..."
-    : []
-) 
+  Array.isArray(acf.value?.informations_regolithe) ? acf.value.informations_regolithe : []
+)
 
 </script>
 
 <template>
-<section id="section" class="titre ressource">
-        <div class="container" id="#section-ressourcetitre">
+<section class="titre ressource">
+        <div class="container" id="section-ressourcetitre">
             <div class="col-left">
                 <h2 class="bigtitle uppercase font-150 font-thunderbold fc-white" v-html="acf?.titre_ressource"></h2>
                 <div class="fondoblique"></div>
-                <div class="scrollbot" hash="#section-ressource">
+                <a class="scrollbot" href="#section-ressource" aria-label="Défiler vers le régolite lunaire">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36.722" height="46.717" viewBox="0 0 36.722 46.717">
                         <g id="Groupe_41" data-name="Groupe 41" transform="translate(-1383.793 -831.042)">
                             <g id="Tracé_127" data-name="Tracé 127" transform="translate(1385.968 834.399)" fill="none">
@@ -42,7 +30,7 @@ const regolithes = computed(() =>
                             </g>
                         </g>
                     </svg>
-                </div> 
+                </a>
                 <div class="italic-lines white">
                     <div class="line" v-for="i in 80" :key="i"></div>
                 </div>
@@ -79,7 +67,3 @@ const regolithes = computed(() =>
         </div>
     </section>
 </template>
-
-<style>
-
-</style>

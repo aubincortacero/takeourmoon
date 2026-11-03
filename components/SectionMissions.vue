@@ -1,45 +1,27 @@
-
 <script setup>
-const config = useRuntimeConfig()
-import { onMounted, nextTick} from 'vue'
+import { onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ref, computed } from 'vue'
 
-
-// ✅ Fetch REST API WordPress (page ID 7)
-const acf = ref(null)
-
-try {
-  const { data: page } = await useFetch(`${config.public.wpApi}/acf/v3/pages/7`)
-  acf.value = page.value?.acf
-  console.log('OK - Missions');
-} catch (error) {
-  console.error("Impossible de charger la page WP :", error)
-}
+const acf = await useWpPage()
 
 const missions = computed(() =>
-  Array.isArray(acf.value?.tableau_des_missions)
-    ? acf.value.tableau_des_missions.slice(0) // enlève la première ligne "Mission / État / Année..."
-    : []
-) 
+  Array.isArray(acf.value?.tableau_des_missions) ? acf.value.tableau_des_missions : []
+)
 
-const title = acf.value?.titre_du_bloc_mission || ''
-const subtitle = acf.value?.sous_titre_bloc_mission || ''
-
+const title = computed(() => acf.value?.titre_du_bloc_mission || '')
+const subtitle = computed(() => acf.value?.sous_titre_bloc_mission || '')
 
 onMounted(async () => {
-  // Log the fetched data for debugging
+  await nextTick()
 
-    await nextTick()
-    
-    gsap.registerPlugin(ScrollTrigger) 
+  gsap.registerPlugin(ScrollTrigger)
 
-    missions.value.forEach((row, index) => {
-    const content = "#section-mission .container > .tableau-missions .uneligne" + index;
-    const line = "#section-mission .container > .tableau-missions .line" + index;
+  missions.value.forEach((row, index) => {
+    const content = '#section-mission .container > .tableau-missions .uneligne' + index
+    const line = '#section-mission .container > .tableau-missions .line' + index
 
-    let tl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: content,
         start: 'top bottom-=18vh',
@@ -61,7 +43,7 @@ onMounted(async () => {
       ease: 'power4.out'
     }, '-=0.8')
   })
-});
+})
 </script>
 
 <template>
@@ -75,8 +57,8 @@ onMounted(async () => {
 
       <!-- Tableau des missions -->
       <div class="tableau-missions">
-        <template v-if="missions && missions.length"  v-for="(mission, index) in missions"
-            :key="index">
+        <template v-if="missions.length">
+          <template v-for="(mission, index) in missions" :key="index">
             <div :class="['uneligne', `uneligne${index}`]">
               <div class="unevaleur">
                 <p class="font-20">{{ mission.mission }}</p>
@@ -101,6 +83,7 @@ onMounted(async () => {
 
             <!-- Ligne séparatrice -->
             <div :class="['line', `line${index}`]"></div>
+          </template>
         </template>
 
         <!-- Fallback si pas de missions -->

@@ -1,15 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
-// nuxt.config.ts
-import nodeCrypto from 'node:crypto'
-import tsconfigPaths from 'vite-tsconfig-paths'
-
-// Patch si besoin : ajoute createHash au crypto web
-// @ts-ignore
-if (typeof globalThis.crypto.createHash !== 'function') {
-  // @ts-ignore
-  globalThis.crypto.createHash = nodeCrypto.createHash
-}
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
@@ -19,7 +8,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      wpApi: process.env.NUXT_PUBLIC_WP_API
+      // surchargé par NUXT_PUBLIC_WP_API (voir .env.example)
+      wpApi: ''
     }
   },
   modules: ['@nuxt/image', 'lenis/nuxt'],
@@ -28,17 +18,17 @@ export default defineNuxtConfig({
     format: ['webp', 'avif'],
     quality: 80
   },
-
-  vite: {
-    plugins: [
-      tsconfigPaths()
-    ]
+  vue: {
+    compilerOptions: {
+      // <model-viewer> est un web component chargé par script
+      isCustomElement: (tag) => tag === 'model-viewer'
+    }
   },
   app: {
     head: {
       script: [
         {
-          src: "https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js",
+          src: "https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js",
           type: "module"
         }
       ]

@@ -145,55 +145,10 @@ p {
 /* END FONT WEIGHT */
 /* FONT FAMILY */
 /* Webfont: Thunder-LC */
-@font-face {
-  font-family: 'Thunder';
-  src: url("./font/thunder/Thunder-LC.woff2") format("woff2"), url("./font/thunder/Thunder-LC.otf") format("opentype");
-  /* Safari, Android, iOS */
-  font-style: normal;
-  font-weight: normal;
-  text-rendering: optimizeLegibility;
-}
-
 /* Webfont: Thunder-MediumLC */
-@font-face {
-  font-family: 'ThunderMed';
-  src: url("./font/thunder/Thunder-MediumLC.woff2") format("woff2"), url("./font/thunder/Thunder-MediumLC.otf") format("opentype");
-  /* Safari, Android, iOS */
-  font-style: normal;
-  font-weight: normal;
-  text-rendering: optimizeLegibility;
-}
-
 /* Webfont: Thunder-MediumLCItalic */
-@font-face {
-  font-family: 'ThunderMedIta';
-  src: url("./font/thunder/Thunder-MediumLCItalic.woff2") format("woff2"), url("./font/thunder/Thunder-MediumLCItalic.otf") format("opentype");
-  /* Safari, Android, iOS */
-  font-style: italic;
-  font-weight: normal;
-  text-rendering: optimizeLegibility;
-}
-
 /* Webfont: Thunder-BoldLC */
-@font-face {
-  font-family: 'Thunder';
-  src: url("./font/thunder/Thunder-BoldLC.woff2") format("woff2"), url("./font/thunder/Thunder-BoldLC.otf") format("opentype");
-  /* Safari, Android, iOS */
-  font-style: normal;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-}
-
 /* Webfont: Thunder-BoldLCItalic */
-@font-face {
-  font-family: 'ThunderIta';
-  src: url("./font/thunder/Thunder-BoldLCItalic.woff2") format("woff2"), url("./font/thunder/Thunder-BoldLCItalic.otf") format("opentype");
-  /* Safari, Android, iOS */
-  font-style: italic;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-}
-
 .font-thunder {
   font-family: 'Thunder';
 }
@@ -883,35 +838,35 @@ footer .containermentions {
 }
 
 /*ARTEMIS*/
-#section.titre {
+section.titre {
   position: relative;
   width: 100vw;
   overflow-x: clip;
 }
 
-#section.titre .container {
+section.titre .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-#section.titre .container .col-left {
+section.titre .container .col-left {
   width: 100%;
   padding-left: 50px;
   padding-top: 22vh;
 }
 
-#section.titre .container .col-left h2 {
+section.titre .container .col-left h2 {
   padding-left: 10vw;
   z-index: 0;
 }
 
-#section.titre .container .col-left .scrollbot {
+section.titre .container .col-left .scrollbot {
   position: absolute;
   bottom: 34vh;
 }
 
-#section.titre .container .col-left .fondoblique {
+section.titre .container .col-left .fondoblique {
   background-color: #FF4053;
   -webkit-transform: skewX(-20deg);
           transform: skewX(-20deg);
@@ -924,7 +879,7 @@ footer .containermentions {
           transform-origin: left;
 }
 
-#section.titre .container .col-left .italic-lines {
+section.titre .container .col-left .italic-lines {
   position: absolute;
   left: 0;
   bottom: 9vh;
@@ -1141,7 +1096,7 @@ main {
   overflow-x: hidden !important;
 }
 
-#section.titre.ressource .container .col-left .fondoblique {
+section.titre.ressource .container .col-left .fondoblique {
   background-color: #E4E4E4;
   -webkit-transform: skewX(-20deg);
           transform: skewX(-20deg);
@@ -1399,28 +1354,28 @@ main {
     margin-left: -26%;
     bottom: -6vh;
   }
-  #section.titre .container .col-left {
+  section.titre .container .col-left {
     padding-top: 15vh;
   }
-  #section.titre .container .col-left h2,
-  #section.titre .container .col-left {
+  section.titre .container .col-left h2,
+  section.titre .container .col-left {
     padding-left: 0;
   }
-  #section.titre .container .col-left h2 {
+  section.titre .container .col-left h2 {
     padding-left: 60px;
   }
-  #section.titre .container .col-left .fondoblique {
+  section.titre .container .col-left .fondoblique {
     margin-left: 0%;
   }
-  #section.titre .container .col-left .italic-lines {
+  section.titre .container .col-left .italic-lines {
     height: 14.3vh;
     -webkit-clip-path: inset(0 40px 0 0);
             clip-path: inset(0 40px 0 0);
   }
-  #section.titre .container .col-left .fondoblique {
+  section.titre .container .col-left .fondoblique {
     height: 20vh;
   }
-  #section.titre .container .col-left .scrollbot {
+  section.titre .container .col-left .scrollbot {
     bottom: 22vh;
   }
   #section-artemis {
@@ -1498,7 +1453,7 @@ main {
   #section-image .italic-lines {
     top: -18vh;
   }
-  #section.titre.ressource .container .col-left .fondoblique {
+  section.titre.ressource .container .col-left .fondoblique {
     height: 20vh;
   }
   #section-ressource {

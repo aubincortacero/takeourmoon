@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts">
-// Import correct des assets Nuxt
-const modelUrl = new URL('~/assets/3d/moonpluspetite.glb', import.meta.url).href
-const posterUrl = new URL('~/assets/3d/moonposter.png', import.meta.url).href
+import modelUrl from '~/assets/3d/moonpluspetite.glb?url'
+import posterUrl from '~/assets/3d/moonposter.png'
 </script>

@@ -1,41 +1,27 @@
 <script setup>
-const config = useRuntimeConfig()
-import moonPoster from '../assets/images/moonposterfull.webp'
-import soustractionImage from '../assets/images/Soustraction.webp'
+import moonPoster from '~/assets/images/moonposterfull.webp'
+import soustractionImage from '~/assets/images/Soustraction.webp'
 
- // ✅ Fetch REST API WordPress (page ID 7)
-const acf = ref(null)
-try {
-  const { data: page } = await useFetch(`${config.public.wpApi}/acf/v3/pages/7`)
-  acf.value = page.value?.acf
-  console.log('OK - Moon');
-} catch (error) {
-  console.error('Erreur lors de la récupération des données WordPress :', error)
-}
+const acf = await useWpPage()
 
 const tabs = computed(() =>
-  Array.isArray(acf.value?.tableau_des_informations)
-    ? acf.value.tableau_des_informations.slice(0) // enlève la première ligne "Mission / État / Année..."
-    : []
-) 
+  Array.isArray(acf.value?.tableau_des_informations) ? acf.value.tableau_des_informations : []
+)
 
 const articles = computed(() =>
-  Array.isArray(acf.value?.minis_articles_artemis)
-    ? acf.value.minis_articles_artemis.slice(0) // enlève la première ligne "Mission / État / Année..."
-    : []
-) 
-
+  Array.isArray(acf.value?.minis_articles_artemis) ? acf.value.minis_articles_artemis : []
+)
 
 </script>
 
 
 <template>
-    <section id="section" class="titre artemis">
+    <section class="titre artemis">
         <div class="container" id="sectionartemis">
             <div class="col-left">
                 <h2 class="bigtitle uppercase font-150 font-thunderbold fc-white" v-html="acf?.grand_titre_colonisation"></h2>
                 <div class="fondoblique"></div>
-                <div class="scrollbot" hash="#section-artemis">
+                <a class="scrollbot" href="#section-artemis" aria-label="Défiler vers la section Artemis">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36.722" height="46.717" viewBox="0 0 36.722 46.717">
                         <g id="Groupe_41" data-name="Groupe 41" transform="translate(-1383.793 -831.042)">
                             <g id="Tracé_127" data-name="Tracé 127" transform="translate(1385.968 834.399)" fill="none">
@@ -52,7 +38,7 @@ const articles = computed(() =>
                             </g>
                         </g>
                     </svg>
-                </div> 
+                </a>
                 <div class="italic-lines ">
                     <div class="line" v-for="i in 80" :key="i"></div>
                 </div>
@@ -100,8 +86,3 @@ const articles = computed(() =>
         </div>  
     </section>
 </template>
-
-
-<style>
-
-</style>

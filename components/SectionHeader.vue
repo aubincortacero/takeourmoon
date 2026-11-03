@@ -1,17 +1,7 @@
-
 <script setup>
-const config = useRuntimeConfig()
-import Model3D from '../components/Model3d.vue'
- 
-// ✅ Fetch REST API WordPress (page ID 7)
-const acf = ref(null)
-try {
-  const { data: page } = await useFetch(`${config.public.wpApi}/acf/v3/pages/7`)
-  acf.value = page.value?.acf
-  console.log('OK - Header');
-} catch (error) {
-  console.error('Erreur lors de la récupération des données WordPress :', error)
-}
+import Model3D from '~/components/Model3d.vue'
+
+const acf = await useWpPage()
 
 </script>
 

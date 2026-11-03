@@ -1,23 +1,9 @@
-
 <script setup>
-const config = useRuntimeConfig()
-import { onMounted } from 'vue'
+import { onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
- // état largeur fenêtre
-const windowWidth = ref(0)
-const updateWidth = () => (windowWidth.value = window.innerWidth)
-
-// ✅ Fetch REST API WordPress (page ID 7)
-const acf = ref(null)
-try {
-  const { data: page } = await useFetch(`${config.public.wpApi}/acf/v3/pages/7`)
-  acf.value = page.value?.acf
-  console.log('Page data SectionHeader :', acf.value?.grand_titre);
-} catch (error) {
-  console.error('Erreur lors de la récupération des données WordPress :', error)
-}
+const acf = await useWpPage()
 
 onMounted( async () => {
 
@@ -25,13 +11,10 @@ onMounted( async () => {
 
     gsap.registerPlugin(ScrollTrigger) 
 
-    updateWidth()
-    window.addEventListener('resize', updateWidth)
-    const isMobile = windowWidth.value < 780
+    const isMobile = window.innerWidth < 780
 
       if(!isMobile){   
 
-        //Animation, don't forget scroller : "Main -   #scroll-page-container    - locomotive smooth scroll"
         const tlheader = gsap.timeline({
                 scrollTrigger: {
                 trigger: "#section-header", 
@@ -41,7 +24,7 @@ onMounted( async () => {
                 scrub: true
             }
         });  
-        tlheader.to("#section-header h1", {xPercent: 3, duration: 1}),
+        tlheader.to("#section-header h1", {xPercent: 3, duration: 1});
         tlheader.to("#section-header .container .col-left", {yPercent: -15, duration: 1}, "-=1");
  
         const tlmission = gsap.timeline({
@@ -56,23 +39,23 @@ onMounted( async () => {
 
         const tltitreartmemis = gsap.timeline({
                 scrollTrigger: {
-                trigger: "#section.titre.artemis", 
+                trigger: "section.titre.artemis", 
                 start: "top bottom",
                 end: "bottom top",
                 scrub: true
             }
         });   
-        tltitreartmemis.to("#section.titre.artemis h2", {xPercent: 3, duration: 1});
+        tltitreartmemis.to("section.titre.artemis h2", {xPercent: 3, duration: 1});
 
         const tltitreressource = gsap.timeline({
                 scrollTrigger: {
-                trigger: "#section.titre.ressource", 
+                trigger: "section.titre.ressource", 
                 start: "top bottom",
                 end: "bottom top",
                 scrub: true
             }
         });  
-        tltitreressource.to("#section.titre.ressource h2", {xPercent: 3, duration: 1});
+        tltitreressource.to("section.titre.ressource h2", {xPercent: 3, duration: 1});
     
         const tlartemis = gsap.timeline({
                 scrollTrigger: {
@@ -110,7 +93,7 @@ onMounted( async () => {
 </script>
 <template>
 
-<section id="section" class="titre">
+<section class="titre">
     <div class="container">
         <div class="col-left">
             <div class="fondoblique"></div>
@@ -143,7 +126,7 @@ onMounted( async () => {
         </div>
     </div> 
     <div class="containermentions font-15 font-thundermediumitalic fc-black">
-        ©2021TAKEOURMOON propulsé par <a style="color : black;" target="_blank" href="https://aubincortacero.fr">Aubin Cortacero </a>
+        ©2021TAKEOURMOON propulsé par <a style="color : black;" target="_blank" rel="noopener" href="https://aubincortacero.fr">Aubin Cortacero </a>
     </div>  
 </footer>
 </template>
