@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   css: [
     './assets/css/main.css', 
     './assets/css/fonts.css',
-    './assets/css/modern.css'
+    './assets/css/modern.css',
+    './assets/css/mobile.css'
   ],
   modules: ['@nuxt/image', 'lenis/nuxt'],
   // Contenu 100 % statique : la page est générée au build et servie telle quelle par le CDN

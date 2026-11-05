@@ -28,6 +28,7 @@ export const useScrollAnimations = ({ reduceMotion = false } = {}) => {
 
   const isMobile = window.innerWidth < 780
   if (!isMobile) titleDrift()
+  if (window.innerWidth < 768) phoneDrift()
 }
 
 // Grands titres (hors hero, géré par l'intro) : les lettres montent depuis un masque.
@@ -109,12 +110,25 @@ const sectionDetails = () => {
 
   // Le régolithe flotte en apesanteur
   gsap.to('#section-ressource .col.mid img', {
-    y: -30,
-    rotation: 4,
+    y: -10,
     duration: 4,
     ease: 'sine.inOut',
     yoyo: true,
     repeat: -1
+  })
+}
+
+// Téléphone : la Lune du hero s'éloigne et la grande image zoome au scroll.
+const phoneDrift = () => {
+  gsap.to('#section-header .container .col-left model-viewer', {
+    yPercent: -14,
+    ease: 'none',
+    scrollTrigger: { trigger: '#section-header', start: 'top top', end: 'bottom top', scrub: true }
+  })
+  gsap.fromTo('#section-image .container img', { scale: 1 }, {
+    scale: 1.18,
+    ease: 'none',
+    scrollTrigger: { trigger: '#section-image', start: 'top bottom', end: 'bottom top', scrub: true }
   })
 }
 

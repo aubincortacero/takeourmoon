@@ -128,8 +128,7 @@ const content = {
 
   titre_ressource: '&nbsp;&nbsp;Une <br>\n&nbsp;ressource<br>\nincroyable',
   titre_régolithe: 'Le régolithe <br>\n&nbsp;lunaire',
-  // Image à déposer dans public/images/ (anciennement hébergée sur WordPress)
-  photo_regolithe: '/images/Groupe-de-masques-44.webp',
+  photo_regolithe: '/images/regolithe.webp',
   // Ordre d'affichage : [0] colonne gauche haut, [2] gauche bas, [1] droite haut, [3] droite bas
   informations_regolithe: [
     {

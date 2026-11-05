@@ -24,6 +24,16 @@ const results = [
 const result = ref('all')
 const country = ref('all')
 
+// Sur téléphone la liste est repliée (mobile.css) : le bouton déplie le reste
+const MOBILE_ROWS = 12
+const expanded = ref(false)
+
+const expand = async () => {
+  expanded.value = true
+  await nextTick()
+  ScrollTrigger.refresh()
+}
+
 const countries = computed(() => {
   const counts = {}
   missions.value.forEach((m) => { counts[m.etat] = (counts[m.etat] || 0) + 1 })
@@ -67,6 +77,7 @@ const revealRows = () => {
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 watch([result, country], async () => {
+  expanded.value = false
   animateStats()
   await nextTick()
   if (!reduceMotion()) {
@@ -195,7 +206,7 @@ onMounted(async () => {
       </div>
 
       <!-- Tableau des missions -->
-      <div ref="table" class="tableau-missions" @mouseover="onRowOver" @mouseleave="onTableLeave">
+      <div ref="table" class="tableau-missions" :class="{ 'is-expanded': expanded }" @mouseover="onRowOver" @mouseleave="onTableLeave">
         <div class="uneligne uneligne-head">
           <div class="unevaleur"><p class="font-20">Mission</p></div>
           <div class="unevaleur"><p class="font-20">État</p></div>
@@ -237,6 +248,13 @@ onMounted(async () => {
         <!-- Fallback si aucun résultat -->
         <p v-else class="missions-empty font-25 font-thundermediumitalic">Aucune mission pour ce filtre.</p>
       </div>
+
+      <button
+        v-if="!expanded && filtered.length > MOBILE_ROWS"
+        type="button"
+        class="missions-more font-thundermediumitalic"
+        @click="expand"
+      ><span>Voir les {{ filtered.length - MOBILE_ROWS }} autres missions</span></button>
     </div>
 
     <!-- Texte de fin, qui continue... à l'infini -->

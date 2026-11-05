@@ -353,6 +353,11 @@ html.has-cursor * {
   border: 2px solid currentColor;
 }
 
+/* Bouton « voir plus » : n'existe que sur téléphone (mobile.css) */
+.missions-more {
+  display: none;
+}
+
 .missions-empty {
   padding: 4vh 0;
 }

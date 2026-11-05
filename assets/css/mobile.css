@@ -1,0 +1,543 @@
+/*
+  VERSION MOBILE (téléphones, < 768px)
+  Chargé en dernier : toutes les règles sont dans le media query, tablette et desktop n'en voient aucune.
+  Parti pris : marge latérale de 10px partout, titres plein écran, images à fond perdu.
+*/
+@media screen and (max-width: 767px) {
+  :root {
+    --gutter: 10px;
+    --title: 26vw;
+  }
+
+  /* TYPOGRAPHIE */
+  .bigtitle,
+  #section-mission h2,
+  #section-artemis .container .col-left h2,
+  #section-artemis .containerbot h2 {
+    font-size: var(--title);
+    line-height: 0.88;
+    white-space: normal;
+  }
+
+  h3,
+  #section-mission h3,
+  #section-ressource .col article h3,
+  #section-artemis .containerbot article h3 {
+    font-size: clamp(38px, 11vw, 56px);
+    line-height: 0.95;
+    transform-origin: left bottom;
+  }
+
+  .font-20.font-thunder {
+    font-size: 20px;
+    line-height: 1.26;
+    letter-spacing: 0.01em;
+  }
+
+  .scrollbot,
+  .scrollbot svg {
+    right: var(--gutter);
+    width: 24px;
+  }
+
+  /* HERO : le titre occupe l'écran, la Lune sort par la droite */
+  #section-header {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  #section-header .container .col-left {
+    transform: none;
+    display: block;
+    overflow: visible;
+  }
+
+  /* La Lune se lève derrière le bloc rouge : celui-ci passe devant, le titre reste derrière */
+  #section-header .container .col-left model-viewer {
+    position: absolute;
+    top: 41%;
+    left: 26vw;
+    width: min(118vw, 62svh);
+    height: min(118vw, 62svh);
+    max-width: none;
+  }
+
+  .moon-impact span {
+    width: 40vw;
+    height: 40vw;
+    margin: -20vw 0 0 -20vw;
+  }
+
+  #section-header .container .col-right {
+    padding-left: var(--gutter);
+    z-index: auto;
+  }
+
+  #section-header .container .col-right .col-top {
+    top: 0;
+    height: 76%;
+    padding-top: 2vh;
+  }
+
+  #section-header .container .col-right .col-top h1 {
+    font-size: min(38vw, 18.5svh);
+    line-height: 0.86;
+  }
+
+  #section-header .container .col-right .col-bot {
+    height: 24%;
+    position: relative;
+  }
+
+  #section-header .container .col-right .col-bot .fondoblique {
+    display: flex;
+    align-items: flex-end;
+    margin-left: -60px;
+    width: 160%;
+  }
+
+  #section-header .container .col-right .col-bot p {
+    margin-left: 0;
+    padding: 0 0 24px 104px;
+    font-size: min(9vw, 42px, 7svh);
+    line-height: 1;
+  }
+
+  #section-header .italic-lines.first {
+    height: 32svh;
+  }
+
+  #section-header > .scrollbot {
+    bottom: 26px;
+    top: auto;
+  }
+
+  /* MISSIONS */
+  #section-mission {
+    min-height: auto;
+    padding: 6vh var(--gutter) 6vh;
+    margin-bottom: 6vh;
+  }
+
+  #section-mission h2,
+  #section-mission .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #section-mission .fondoblique {
+    margin-left: -26%;
+    bottom: -6vh;
+  }
+
+  #section-mission .container > h3 {
+    margin-top: 2vh;
+  }
+
+  .missions-intro {
+    gap: 4vh;
+    margin-top: 4vh;
+  }
+
+  .missions-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    width: 100%;
+  }
+
+  .missions-stat dt {
+    font-size: 22px;
+  }
+
+  .missions-stat dd {
+    font-size: 33vw;
+    line-height: 0.88;
+  }
+
+  .missions-filters {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .chips {
+    gap: 8px 6px;
+    padding-left: 5px;
+  }
+
+  .chip {
+    min-height: 42px;
+    padding: 0.2em 0.85em;
+    font-size: 20px;
+  }
+
+  /* Le tableau devient une liste : nom et année, puis le résultat en dessous */
+  #section-mission .container > .tableau-missions {
+    margin: 5vh 0 4vh;
+    border-top: 2px solid var(--black);
+  }
+
+  #section-mission .container > .tableau-missions .uneligne.uneligne-head,
+  #section-mission .container > .tableau-missions .line {
+    display: none;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne.uneligne-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 2px 12px;
+    padding: 14px 0 12px;
+    white-space: normal;
+    border-bottom: 2px solid var(--black);
+  }
+
+  #section-mission .container > .tableau-missions .uneligne-row::before {
+    inset: 0 calc(var(--gutter) * -1);
+  }
+
+  #section-mission .container > .tableau-missions .uneligne .unevaleur {
+    width: auto;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne-row .unevaleur:nth-child(1) p {
+    font-family: 'Thunder';
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne .unevaleur:nth-child(2),
+  #section-mission .container > .tableau-missions .uneligne .unevaleur:nth-child(4) {
+    display: none;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne .unevaleur:nth-child(3) {
+    display: block;
+    width: auto;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne-row .unevaleur:nth-child(3) p {
+    font-family: 'ThunderMedIta';
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne .unevaleur:last-of-type {
+    grid-column: 1 / -1;
+    width: auto;
+    display: block;
+    text-align: left;
+  }
+
+  #section-mission .container > .tableau-missions .uneligne-row .unevaleur:last-of-type p {
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  /* 12 lignes (le tableau commence par l'en-tête et un filet), le bouton déplie le reste */
+  #section-mission .tableau-missions:not(.is-expanded) .uneligne-row:nth-child(n + 15) {
+    display: none !important;
+  }
+
+  .missions-more {
+    display: block;
+    width: 100%;
+    min-height: 60px;
+    margin-bottom: 5vh;
+    appearance: none;
+    border: 0;
+    background-color: var(--black);
+    color: var(--red);
+    font-size: 26px;
+    transform: skewX(-20deg);
+  }
+
+  .missions-more > span {
+    display: inline-block;
+    transform: skewX(20deg);
+  }
+
+  #section-mission .histories,
+  #section-mission .histories.marquee {
+    width: calc(100% + var(--gutter) * 2);
+    margin: 0 calc(var(--gutter) * -1);
+    font-size: 64px;
+  }
+
+  /* TRANSITIONS : un écran noir entier avant chaque chapitre */
+  section.titre .container .col-left {
+    padding-left: var(--gutter);
+    padding-top: 0;
+  }
+
+  section.titre.artemis .container .col-left,
+  section.titre.ressource .container .col-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  section.titre .container .col-left h2 {
+    padding-left: 0;
+    margin-bottom: 7vh;
+  }
+
+  section.titre .container .col-left .fondoblique,
+  section.titre.ressource .container .col-left .fondoblique {
+    height: 24vh;
+    margin-left: 0;
+  }
+
+  section.titre .container .col-left .italic-lines {
+    bottom: 12vh;
+    height: 9vh;
+  }
+
+  section.titre .container .col-left .scrollbot {
+    top: var(--gutter);
+    bottom: auto;
+  }
+
+  /* LA LUNE : fiche en deux colonnes */
+  #section-artemis {
+    margin-top: -5vh;
+    padding-bottom: 5vh;
+  }
+
+  #section-artemis .fondoblique {
+    bottom: -6vh;
+  }
+
+  #section-artemis .container {
+    flex-direction: column;
+    padding-top: 6vh;
+  }
+
+  #section-artemis .container > .col-left,
+  #section-artemis .container > .col-right {
+    width: 100%;
+  }
+
+  #section-artemis .container > .col-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5vh 10px;
+    padding: 0 var(--gutter);
+  }
+
+  #section-artemis .container > .col-left > h2,
+  #section-artemis .container > .col-left > h3 {
+    grid-column: 1 / -1;
+    padding: 0;
+  }
+
+  #section-artemis .container .col-left h2 {
+    padding: 0;
+  }
+
+  #section-artemis .container .col-left .informations-tab {
+    margin-top: 0;
+  }
+
+  #section-artemis .container .col-left .uneligne {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+  }
+
+  #section-artemis .container .col-left .uneligne .col-left,
+  #section-artemis .container .col-left .uneligne .col-right {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  #section-artemis .container .col-left .uneligne .col-left {
+    margin-bottom: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  #section-artemis .container .col-left .uneligne .col-left img {
+    width: 54px;
+  }
+
+  #section-artemis .container .col-left .uneligne .col-right p {
+    margin-bottom: 0;
+    font-size: 24px;
+    line-height: 1.05;
+  }
+
+  #section-artemis .container .col-left .uneligne .col-right p[data-count] {
+    font-size: clamp(36px, 11vw, 64px);
+    line-height: 1.05;
+  }
+
+  /* La grande Lune entre par la droite et déborde de l'écran */
+  #section-artemis .container > .col-right {
+    margin-top: 4vh;
+    transform: translateX(24%);
+  }
+
+  #section-artemis .container .col-right img {
+    display: block;
+    width: 128vw;
+    height: 128vw;
+    max-width: none;
+  }
+
+  #section-artemis .containerbot {
+    margin-top: -8vh;
+    padding: 0 var(--gutter);
+    position: relative;
+    z-index: 2;
+  }
+
+  #section-artemis .containerbot .liste-articles {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  #section-artemis .containerbot .liste-articles article {
+    width: 100%;
+    margin-bottom: 6vh;
+    padding: 0 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* IMAGE DU CRATÈRE : à fond perdu */
+  #section-image .container {
+    padding: 0;
+  }
+
+  #section-image .container img {
+    display: block;
+    width: 100%;
+  }
+
+  /* RÉGOLITHE : l'astéroïde en ouverture, puis les quatre usages */
+  #section-ressource {
+    margin-top: -5vh;
+    padding-top: 6vh;
+    padding-bottom: 76vh;
+  }
+
+  #section-ressource h2 {
+    position: relative;
+    z-index: 3;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    margin-bottom: 0;
+    white-space: normal;
+    line-height: 1;
+  }
+
+  #section-ressource .container {
+    flex-direction: column;
+    padding: 0 var(--gutter);
+  }
+
+  #section-ressource .col {
+    display: contents;
+  }
+
+  #section-ressource .col.mid {
+    display: flex;
+    order: -1;
+    width: 100%;
+    height: 112vw;
+    margin: -12vw 0 -4vw;
+  }
+
+  #section-ressource .col.mid img {
+    flex: none;
+    width: 112vw;
+    height: 112vw;
+    max-width: none;
+  }
+
+  #section-ressource .col article {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 6vh;
+  }
+
+  #section-ressource .col article h3 {
+    margin-bottom: 1.5vh;
+  }
+
+  /* lecture dans l'ordre 0, 1, 2, 3 du contenu, malgré les deux colonnes du desktop */
+  #section-ressource .col:first-child .col-top { order: 1; }
+  #section-ressource .col:last-child .col-top { order: 2; }
+  #section-ressource .col:first-child .col-bot { order: 3; }
+  #section-ressource .col:last-child .col-bot { order: 4; }
+
+  /* PIED DE PAGE : la fusée décolle sous les liens (le cover n'en gardait que la fumée) */
+  footer {
+    padding-top: 0;
+    padding-bottom: 96vw;
+    background-size: 250% auto;
+    background-position: right bottom;
+    position: relative;
+  }
+
+  .footer-marquee {
+    font-size: 40vw;
+    line-height: 0.95;
+    margin: 0 0 3vh;
+    -webkit-text-stroke-width: 2px;
+  }
+
+  footer .container {
+    flex-direction: column;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  footer .container .bigtitle {
+    font-size: 40vw;
+    line-height: 0.86;
+  }
+
+  footer .container .col {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  footer .container .col:first-child {
+    margin-bottom: 4vh;
+  }
+
+  footer .container .col:nth-child(3) {
+    display: none;
+  }
+
+  footer .container .col a {
+    font-size: 28px;
+    line-height: 1.5;
+  }
+
+  footer .container .col a.secondary {
+    font-size: 24px;
+  }
+
+  footer .back-to-top {
+    margin: 3vh 0 0 auto;
+    font-size: 30px;
+  }
+
+  footer .containermentions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    padding: 0 var(--gutter);
+    font-size: 16px;
+  }
+}
